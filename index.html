@@ -15,9 +15,10 @@
 	<link rel="stylesheet" href="css/style.min.css">
 	<title>JS learn</title>
 </head>
-	<body>
+<body>
 
-		<!-- 
+		
+<!-- 
 
 		<pre><code class="language-javascript">
 
@@ -25,29 +26,30 @@
 
 		-->
 
-		
-
-		<h1 class="">JavaScript</h1>
-
-<ul class="header">
-  <li class="" data-tab="tab-1">Array</li>
-  <li class="" data-tab="tab-2">String</li>
-  <li class="" data-tab="tab-3">Object</li>
-  <li class="" data-tab="tab-4">Number</li>
-  <li class="" data-tab="tab-5">Most used codes</li>
-  <li class="" data-tab="tab-6">Example</li>
-  <li class="" data-tab="tab-7">Console commands</li>
-  <li class="" data-tab="tab-8">Date</li>
-  <li class="" data-tab="tab-9">RegEx</li>
-  <li class="" data-tab="tab-10">Operators</li>
-  <li class="" data-tab="tab-11">DOM</li>
-  <li class="" data-tab="tab-12">TypeScript</li>
-</ul>
-
-<div class="" data-tab-content id="tab-1">
-  <h3>Array</h3>
-  
-    <pre><code class="language-javascript">
+<div class="wrapper">
+	<div class="container">
+		<div class="title">JavaScript</div>
+		<div class="header" id="header">
+			<button class="header_btn" data-tab="tab-1">Array</button>
+			<button class="header_btn" data-tab="tab-2">String</button>
+			<button class="header_btn" data-tab="tab-3">Object</button>
+			<button class="header_btn" data-tab="tab-4">Number</button>
+			<button class="header_btn" data-tab="tab-5">Most used codes</button>
+			<button class="header_btn" data-tab="tab-6">Example</button>
+			<button class="header_btn" data-tab="tab-7">Console commands</button>
+			<button class="header_btn" data-tab="tab-8">Date</button>
+			<button class="header_btn" data-tab="tab-9">RegEx</button>
+			<button class="header_btn" data-tab="tab-10">Operators</button>
+			<button class="header_btn" data-tab="tab-11">DOM</button>
+			<button class="header_btn" data-tab="tab-12">TypeScript</button>
+			<button class="header_btn" data-tab="tab-13">async await</button>
+			<button class="header_btn" data-tab="tab-14">try catch</button>
+			<button class="header_btn" data-tab="tab-15">Loops</button>
+			<button class="header_btn" data-tab="tab-16">import export</button>
+		</div>
+		<div class="contant_blocks" data-tab-content id="tab-1">
+			<div class="sub_title">Array</div>
+    		<pre><code class=" fz language-javascript">
 
   [1, 2, 3].length; // 3
   [1, 2, 3].push(4); //? [1,2,3,4]
@@ -208,14 +210,12 @@ const x = arr.push(5) //arr=[1,2,3,5], x=4
 
 
 
-  
-</div>
+		</div>
 
-<div class="hidden" data-tab-content id="tab-2">
-  <h3>String</h3>
-  
-    
-<pre><code class="language-javascript">
+		<div class="hidden" data-tab-content id="tab-2">
+			<div class="sub_title">String</div>
+    		
+<pre><code class="fz language-javascript">
     "Hello".charAt(4)
     "Hello".concat("", "world")
     "Hello".startsWith("H")
@@ -568,14 +568,12 @@ str40.padStart(3, "0"); // Output: "005"
 
 const str41 = "5";
 str41.padEnd(3, "0"); // Output: "500" -->
-  
-</div>
+		</div>
 
-<div class="hidden" data-tab-content id="tab-3">
-  <h3>Object</h3>
-  
-  
-<pre><code class="language-javascript">
+		<div class="hidden" data-tab-content id="tab-3">
+			<div class="sub_title">Object</div>
+ 			
+<pre><code class=" fz language-javascript">
 
     // Object Methods Cheat Sheet
 
@@ -768,215 +766,13 @@ str41.padEnd(3, "0"); // Output: "500" -->
 
 
 
-  
-</div>
+		</div>
+		
+		<div class="hidden" data-tab-content id="tab-4">
+			<div class="sub_title">Number</div>
+			
 
-<!-- <div class="hidden" data-tab-content id="tab-4">
-	<h3>Таб 4</h3>
-	
-	
-<pre><code class="language-javascript">
-
-    // Object Methods Cheat Sheet
-
-    // 1. Object.create(proto, [propertiesObject])
-    // Creates a new object with the specified prototype object and optional properties.
-    const obj1 = Object.create(null);
-    
-    // 2. Object.keys(obj)
-    // Returns an array of a given object's own enumerable property names.
-    const keys = Object.keys(obj);
-    
-    // 3. Object.values(obj)
-    // Returns an array of a given object's own enumerable property values.
-    const values = Object.values(obj);
-    
-    // 4. Object.entries(obj)
-    // Returns an array of a given object's own enumerable property [key, value] pairs.
-    const entries = Object.entries(obj);
-    
-    // 5. Object.assign(target, ...sources)
-    // Copies the values of all enumerable properties from one or more source objects to a target object.
-    const target = {};
-    Object.assign(target, obj1, obj2);
-    
-    // 6. Object.hasOwnProperty(prop)
-    // Returns a boolean indicating whether the object has the specified property as its own property (not inherited).
-    const hasProp = obj.hasOwnProperty("property");
-    
-    // 7. Object.is(obj1, obj2)
-    // Determines whether two values are the same value.
-    const isSame = Object.is(obj1, obj2);
-    
-    // 8. Object.freeze(obj)
-    // Freezes an object: other code cannot delete or modify its properties.
-    const frozenObj = Object.freeze(obj);
-    
-    // 9. Object.seal(obj)
-    // Seals an object: other code cannot add/delete properties, but can modify existing properties.
-    const sealedObj = Object.seal(obj);
-    
-    // 10. Object.getPrototypeOf(obj)
-    // Returns the prototype of the specified object.
-    const proto = Object.getPrototypeOf(obj);
-    
-    // 11. Object.setPrototypeOf(obj, proto)
-    // Sets the prototype of the specified object.
-    Object.setPrototypeOf(obj, proto);
-    
-    // 12. Object.defineProperty(obj, prop, descriptor)
-    // Adds the named property described by a given descriptor to an object.
-    Object.defineProperty(obj, "property", {
-      value: "value",
-      writable: false,
-      enumerable: true,
-      configurable: true,
-    });
-    
-    // 13. Object.getOwnPropertyDescriptor(obj, prop)
-    // Returns a property descriptor for a named property on an object.
-    const descriptor = Object.getOwnPropertyDescriptor(obj, "property");
-    
-    // 14. Object.getOwnPropertyNames(obj)
-    // Returns an array of all properties (including non-enumerable properties except for those which use Symbol) found directly in a given object.
-    const propertyNames = Object.getOwnPropertyNames(obj);
-    
-    // 15. Object.getOwnPropertySymbols(obj)
-    // Returns an array of all symbol properties found directly in a given object.
-    const symbols = Object.getOwnPropertySymbols(obj);
-    
-    // 16. Object.toString()
-    // Returns a string representation of the object.
-    const str = Object.toString();
-    
-    // Object Methods Cheat Sheet (Continued)
-    
-    // 17. Object.hasOwnProperty(prop)
-    // Returns a boolean indicating whether the object has the specified property as its own property (not inherited).
-    const hasProp = obj.hasOwnProperty("property");
-    
-    // 18. Object.isExtensible(obj)
-    // Determines if an object is extensible (i.e., if new properties can be added to it).
-    const isExtensible = Object.isExtensible(obj);
-    
-    // 19. Object.preventExtensions(obj)
-    // Prevents any extensions of an object (i.e., prevents new properties from being added to it).
-    Object.preventExtensions(obj);
-    
-    // 20. Object.isSealed(obj)
-    // Determines if an object is sealed (i.e., if it is neither extensible nor properties can be deleted).
-    const isSealed = Object.isSealed(obj);
-    
-    // 21. Object.isFrozen(obj)
-    // Determines if an object is frozen (i.e., if it is neither extensible, properties can be deleted, nor properties can be modified).
-    const isFrozen = Object.isFrozen(obj);
-    
-    // 22. Object.keys(obj)
-    // Returns an array of a given object's own enumerable property names.
-    const keys = Object.keys(obj);
-    
-    // 23. Object.values(obj)
-    // Returns an array of a given object's own enumerable property values.
-    const values = Object.values(obj);
-    
-    // 24. Object.entries(obj)
-    // Returns an array of a given object's own enumerable property [key, value] pairs.
-    const entries = Object.entries(obj);
-    
-    // 25. Object.fromEntries(entries)
-    // Transforms a list of key-value pairs into an object.
-    const transformedObj = Object.fromEntries(entries);
-    
-    // 26. Object.prototype.hasOwnProperty(prop)
-    // Returns a boolean indicating whether the object or its prototype chain has the specified property.
-    const hasPropInChain = obj.hasOwnProperty("property");
-    
-    // 27. Object.prototype.toString()
-    // Returns a string representation of the object.
-    const str = obj.toString();
-    
-    // 28. Object.prototype.valueOf()
-    // Returns the primitive value of the object.
-    const value = obj.valueOf();
-    
-    // 29. Object.prototype.isPrototypeOf(obj)
-    // Checks if an object exists in another object's prototype chain.
-    const isProto = prototypeObj.isPrototypeOf(obj);
-    
-    // 30. Object.prototype.propertyIsEnumerable(prop)
-    // Returns a boolean indicating whether the specified property is enumerable.
-    const isEnumerable = obj.propertyIsEnumerable("property");
-    
-    // Object Methods Cheat Sheet (Continued)
-    
-    // 31. Object.getOwnPropertyDescriptors(obj)
-    // Returns an object containing all own property descriptors of an object.
-    const descriptors = Object.getOwnPropertyDescriptors(obj);
-    
-    // 32. Object.isPrototypeOf(obj)
-    // Checks if an object is in the prototype chain of another object.
-    const isProto = Object.isPrototypeOf(protoObj);
-    
-    // 33. Object.values(obj)
-    // Returns an array of a given object's own enumerable property values.
-    const values = Object.values(obj);
-    
-    // 34. Object.entries(obj)
-    // Returns an array of a given object's own enumerable property [key, value] pairs.
-    const entries = Object.entries(obj);
-    
-    // 35. Object.keys(obj)
-    // Returns an array of a given object's own enumerable property names.
-    const keys = Object.keys(obj);
-    
-    // 36. Object.defineProperties(obj, descriptors)
-    // Defines new or modifies existing properties directly on an object, returning the object.
-    Object.defineProperties(obj, {
-      property1: {
-        value: "value1",
-        writable: true,
-        enumerable: true,
-        configurable: true,
-      },
-      property2: {
-        value: "value2",
-        writable: false,
-        enumerable: true,
-        configurable: true,
-      },
-    });
-    
-    // 37. Object.getOwnPropertyNames(obj)
-    // Returns an array of all properties (including non-enumerable properties except for those which use Symbol) found directly in a given object.
-    const propertyNames = Object.getOwnPropertyNames(obj);
-    
-    // 38. Object.getOwnPropertySymbols(obj)
-    // Returns an array of all symbol properties found directly in a given object.
-    const symbols = Object.getOwnPropertySymbols(obj);
-    
-    // 39. Object.toString()
-    // Returns a string representation of the object.
-    const str = Object.toString();
-    
-    // 40. Object.valueOf()
-    // Returns the primitive value of the object.
-    const value = obj.valueOf();
-
-</code></pre> 
-
-
-
-
-
-	
-</div> -->
-
-<div class="hidden" data-tab-content id="tab-4">
-	<h3>Number</h3>
-	
-	
-
-<pre><code class="language-javascript">
+<pre><code class="fz language-javascript">
 
     isNaN(12.4); // false
     isFinite(12.4); // true
@@ -1109,14 +905,12 @@ console.log(Math.exp(num24)); // Output: 7.3890560989306495
 const num25 = 3.7;
 console.log(Math.floor(num25)); // Output: 3 -->
 
-	
-</div>
+		</div>
 
-<div class="hidden" data-tab-content id="tab-5">
-	<h3>Most used codes</h3>
-	
-	
-<pre><code class="language-javascript">
+		<div class="hidden" data-tab-content id="tab-5">
+			<div class="sub_title">Most used codes</div>
+			
+<pre><code class="fz language-javascript">
     console.log("Hello, world!");
     alert("Hello, world!");
     let name = prompt("What is your name?");
@@ -2177,14 +1971,12 @@ console.log(Math.floor(num25)); // Output: 3 -->
 
 
 
-	
-</div>
+		</div>
 
-<div class="hidden" data-tab-content id="tab-6">
-	<h3>Example</h3>
-	
-	<h2></h2>
-<pre style="tab-size: 4;"><code class="language-javascript">
+		<div class="hidden" data-tab-content id="tab-6">
+			<div class="sub_title">Example</div>
+			<h2></h2>
+<pre style="tab-size: 4;"><code class=" fz language-javascript">
 // Variables and Data Types
 let myNumber = 42;
 const myString = "Hello, World!";
@@ -2274,13 +2066,11 @@ console.log("Callback executed!");
 // This example covers many JavaScript structures, but there are more advanced concepts and libraries to explore based on your specific needs.
 
 </code></pre>
-	
-</div>
+		</div>
 
-<div class="hidden" data-tab-content id="tab-7">
-	<h3>Console</h3>
-	
-	<pre><code class="language-javascript">
+		<div class="hidden" data-tab-content id="tab-7">
+			<div class="sub_title">Console</div>
+			<pre><code class=" fz language-javascript">
 /* -----------------TABLE-------------- */
 
 let info1 = [
@@ -2319,13 +2109,11 @@ console.log("total", l);
 console.timeEnd("Time")
 /* -----------------TIME END-------------- */
 </code></pre> 
-	
-</div>
+		</div>
 
-<div class="hidden" data-tab-content id="tab-8">
-	<h3>Date</h3>
-	
-	    <pre><code class="language-javascript">
+		<div class="hidden" data-tab-content id="tab-8">
+			<div class="sub_title">Date</div>
+			    <pre><code class=" fz language-javascript">
     const today = new Date() //today 2020-08-09T61:40:51.0172
     today.getDate() // 9
     today.getDay() // 0 sunday
@@ -2376,13 +2164,11 @@ console.timeEnd("Time")
     </code></pre> -->
 
 
-	
-</div>
+		</div>
 
-<div class="hidden" data-tab-content id="tab-9">
-	<h3>RegEx</h3>
-	
-	<pre><code class="language-javascript">
+		<div class="hidden" data-tab-content id="tab-9">
+			<div class="sub_title">RegEx</div>
+			<pre><code class=" fz language-javascript">
     "abc".match(/./) // .  => any char
     "abc".match(/b/) // b => must be present
     "abc".match(/ab/) // ab => must be present
@@ -2417,13 +2203,11 @@ console.timeEnd("Time")
     g   // => global match
     i  // => ignore cases
 </code></pre> 
-	
-</div>
+		</div>
 
-<div class="hidden" data-tab-content id="tab-10">
-	<h3>Operators</h3>
-	
-	<pre><code class="language-javascript">
+		<div class="hidden" data-tab-content id="tab-10">
+			<div class="sub_title">Operators</div>
+			<pre><code class="fz language-javascript">
     5 == 5 //true
     5 == '5' //true
     5 === 5 //true
@@ -2458,13 +2242,11 @@ console.timeEnd("Time")
     3 <= 3 // true
     5 % 2 // 1
 </code></pre> 
-	
-</div>
+		</div>
 
-<div class="hidden" data-tab-content id="tab-11">
-	<h3>DOM</h3>
-	
-	<pre><code class="language-javascript">
+		<div class="hidden" data-tab-content id="tab-11">
+			<div class="sub_title">DOM</div>
+			<pre><code class=" fz language-javascript">
     //single element defined by id
     const app = document.getElementById('app')
     //multiple elements (arrays) defined by class name
@@ -2553,13 +2335,11 @@ console.timeEnd("Time")
 </code></pre>
 
 
-	
-</div>
+		</div>
 
-<div class="hidden" data-tab-content id="tab-12">
-	<h3>TypeScript</h3>
-	
-	<!--
+		<div class="hidden" data-tab-content id="tab-12">
+			<div class="sub_title">TypeScript</div>
+			<!--
 <pre><code class="language-javascript">
 
 </code></pre>  
@@ -2573,25 +2353,29 @@ console.timeEnd("Time")
     </code></pre> 
 </div> 
 -->
+<div class="header">
+    <button class="header_btn" data-tabts="tabts-1">Basic-1</button>
+    <button class="header_btn" data-tabts="tabts-2">Basic-2</button>
+    <button class="header_btn" data-tabts="tabts-3">Enums</button>
+    <button class="header_btn" data-tabts="tabts-4">Functions</button>
+    <button class="header_btn" data-tabts="tabts-5">Objects</button>
+    <button class="header_btn" data-tabts="tabts-6">Classes</button>
+    <button class="header_btn" data-tabts="tabts-7">Inheritance</button>
+    <button class="header_btn" data-tabts="tabts-8">Namespaces & Modules</button>
+    <button class="header_btn" data-tabts="tabts-9">Type Interface</button>
+    <button class="header_btn" data-tabts="tabts-10">Generic</button>
+    <button class="header_btn" data-tabts="tabts-11">Decorators</button>
+    <button class="header_btn" data-tabts="tabts-12">Utility Types</button>
 
-<li class="" data-tabts="tabts-1">Basic-1</li>
-<li class="" data-tabts="tabts-2">Basic-2</li>
-<li class="" data-tabts="tabts-3">Enums</li>
-<li class="" data-tabts="tabts-4">Functions</li>
-<li class="" data-tabts="tabts-5">Objects</li>
-<li class="" data-tabts="tabts-6">Classes</li>
-<li class="" data-tabts="tabts-7">Inheritance</li>
-<li class="" data-tabts="tabts-8">Namespaces_&_Modules</li>
-<li class="" data-tabts="tabts-9">Type_Interface</li>
-<li class="" data-tabts="tabts-10">Generic</li>
-<li class="" data-tabts="tabts-11">Decorators</li>
-<li class="" data-tabts="tabts-12">Utility_Types</li>
+</div>
+
+
 
 
 
 <div class="" data-tabts-content id="tabts-1">
 <h3>Basic-1</h3>
-<pre><code class="language-javascript">
+<pre><code class=" fz language-javascript">
     // Data types in JavaScript
     - number
     - string
@@ -2673,7 +2457,7 @@ console.timeEnd("Time")
 
 <div class="hidden" data-tabts-content id="tabts-2">
 <h3>Basic-2</h3>
-<pre><code class="language-javascript">
+<pre><code class="fz language-javascript">
     // Array Type
     let list: number[] = [1, 2, 3];
     
@@ -2768,7 +2552,7 @@ console.timeEnd("Time")
 
 <div class="hidden" data-tabts-content id="tabts-3">
     <h3>Enums</h3>
-    <pre><code class="language-javascript">
+    <pre><code class=" fz language-javascript">
         // Simple example of enum type
         enum Directions {
             Up,
@@ -2866,7 +2650,7 @@ console.timeEnd("Time")
 
 <div class="hidden" data-tabts-content id="tabts-4">
     <h3>Functions</h3>
-    <pre><code class="language-javascript">
+    <pre><code class="fz language-javascript">
         // Function example
         const createPassword = (name, age) => `${name}${age}`;
         
@@ -2962,7 +2746,7 @@ console.timeEnd("Time")
 
 <div class="hidden" data-tabts-content id="tabts-5">
     <h3>Objects</h3>
-    <pre><code class="language-javascript">
+    <pre><code class="fz language-javascript">
         // Simple object example
         let user = {
             name: 'Yauhen',
@@ -3093,7 +2877,7 @@ console.timeEnd("Time")
 
 <div class="hidden" data-tabts-content id="tabts-6">
     <h3>Classes</h3>
-    <pre><code class="language-javascript">
+    <pre><code class="fz language-javascript">
         // Simple class example
         class User {
         
@@ -3238,7 +3022,7 @@ console.timeEnd("Time")
 
 <div class="hidden" data-tabts-content id="tabts-7">
     <h3>Inheritance</h3>
-    <pre><code class="language-javascript">
+    <pre><code class="fz language-javascript">
         // Simple Class example
         class User {
         
@@ -3402,7 +3186,7 @@ console.timeEnd("Time")
 
 <div class="hidden" data-tabts-content id="tabts-8">
     <h3>Namespaces_&_Modules</h3>
-    <pre><code class="language-javascript">
+    <pre><code class="fz language-javascript">
         // Just example of functionality
         const SECRET: string = '123321';
         const PI: number = 3.14;
@@ -3502,7 +3286,7 @@ console.timeEnd("Time")
 
 <div class="hidden" data-tabts-content id="tabts-9">
     <h3>Type_Interface</h3>
-    <pre><code class="language-javascript">
+    <pre><code class="fz language-javascript">
         // Simple interface example
         interface User {
             name: string,
@@ -3657,7 +3441,7 @@ console.timeEnd("Time")
 
 <div class="hidden" data-tabts-content id="tabts-10">
     <h3>Generic</h3>
-    <pre><code class="language-javascript">
+    <pre><code class="fz language-javascript">
         // Example of using 'any'
         const getter = (data: any): any => data;
         
@@ -3790,7 +3574,7 @@ console.timeEnd("Time")
 
 <div class="hidden" data-tabts-content id="tabts-11">
     <h3>Decorators</h3>
-    <pre><code class="language-javascript">
+    <pre><code class="fz language-javascript">
         // Simple class example
         class User {
         
@@ -3958,7 +3742,7 @@ console.timeEnd("Time")
 
 <div class="hidden" data-tabts-content id="tabts-12">
     <h3>Utility_Types</h3>
-    <pre><code class="language-javascript">
+    <pre><code class="fz language-javascript">
         // Readonly<T>
             interface User {
                 name: string;
@@ -4068,16 +3852,175 @@ console.timeEnd("Time")
             type T4 = InstanceType<Function>;     // Error
     </code></pre> 
 </div> 
+		</div>
+
+		<div class="hidden" data-tab-content id="tab-13">
+			<div class="sub_title">async await</div>
+			<pre><code class=" fz language-javascript">
+async function getCurrencies() {
+    const response = await fetch(
+        "https://asatryanhov.github.io/data_exchanges/"
+    );
+    const data = await response.json();
+    
+    return data;
+    }
+    
+    getCurrencies()
+    .then((data) => {
+        const x = data;
+        return x;
+    })
+    .then((x) => {
+        console.log(x);
+    });
+</code></pre>  
+		</div>
+
+		<div class="hidden" data-tab-content id="tab-14">
+			<div class="sub_title">try catch</div>
+			<pre><code class="fz language-javascript">
+    try {
+        let num = 5 * 5;
+      console.log("Script is working")
+      } catch ({name,message}) {
+        console.log(name); 
+        console.log(message); 
+      }
+      
+</code></pre> 
+	    </div>
+
+		<div class="hidden" data-tab-content id="tab-15">
+			<div class="sub_title">Loops</div>
+			<pre><code class="fz language-javascript">
+    // For Loop
+for (let i = 0; i < 5; i++) {
+  console.log("For Loop:", i);
+}
+
+// While Loop
+let j = 0;
+while (j < 5) {
+  console.log("While Loop:", j);
+  j++;
+}
+
+// Do-While Loop
+let k = 0;
+do {
+  console.log("Do-While Loop:", k);
+  k++;
+} while (k < 5);
+
+// For-In Loop (Object)
+const person = { name: "John", age: 30 };
+for (const key in person) {
+  console.log("For-In Loop (Object):", key, person[key]);
+}
+
+// For-Of Loop (Array)
+const colors = ["red", "green", "blue"];
+for (const color of colors) {
+  console.log("For-Of Loop (Array):", color);
+}
+
+// For-Each Method (Array)
+const numbers = [1, 2, 3];
+numbers.forEach((number) => {
+  console.log("For-Each Method (Array):", number);
+});
+
+// For-Of Loop with Entries (Array)
+for (const [index, color] of colors.entries()) {
+  console.log("For-Of Loop with Entries (Array):", index, color);
+}
+
+// For-Of Loop with Keys and Values (Object)
+for (const [key, value] of Object.entries(person)) {
+  console.log("For-Of Loop with Keys and Values (Object):", key, value);
+}
+
+// For-Of Loop with Keys (Object)
+for (const key of Object.keys(person)) {
+  console.log("For-Of Loop with Keys (Object):", key);
+}
+
+</code></pre> 
+	    </div>
+
+		<div class="hidden" data-tab-content id="tab-16">
+			<div class="sub_title">import export</div>
+			<pre><code class=" fz language-javascript">
+	// math.js
+    export function add(a, b) {
+    return a + b;
+    }
+
+    export function subtract(a, b) {
+    return a - b;
+    }
+
+    // main.js
+    import { add, subtract } from './math.js';
+
+    console.log(add(5, 3)); // 8
+    console.log(subtract(10, 4)); // 6
+
+    // person.js
+    const person = {
+    name: 'John',
+    age: 30,
+    };
+
+    export default person;
+
+    // main.js
+    import person from './person.js';
+
+    console.log(person.name); // 'John'
+
+    // main.js
+    import { add as addition, subtract as subtraction } from './math.js';
+
+    console.log(addition(5, 3)); // 8
+    console.log(subtraction(10, 4)); // 6
+
+    // myModule.js
+    export default function myFunction() {
+    console.log('Default export');
+    }
+
+    export function namedFunction() {
+    console.log('Named export');
+    }
+
+    // main.js
+    import myFunction, { namedFunction } from './myModule.js';
+
+    myFunction(); // Default export
+    namedFunction(); // Named export
+
+
+
+
 	
-</div>
+</code></pre> 
+	    </div>
 
 
-		<main></main>
-
-		</main>
 		
-		<!-- <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/prism.js"></script> -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-		<script src="js/app.min.js"></script>
-	</body>
+
+	</div>
+</div>
+		
+	<!-- <button id="scrollButton">Scroll to Header</button> -->
+	<button class="hidden " id="scrollToTopButton">TOP</button>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+	<script src="js/app.min.js"></script>
+
+
+		
+</body>
 </html>
