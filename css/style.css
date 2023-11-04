@@ -36,27 +36,22 @@ h6 {
   right: 20px;
   bottom: 20px;
   z-index: 5;
+  border-radius: 100px;
+  background-color: #282c34;
+}
+
+.svg_toTopbtn * {
+  fill: currentColor;
+}
+
+.svg_toTopbtn {
   width: calc(
-      40px + 25 * ((100vw - 320px) / 960)
+      18px + 62 * ((100vw - 320px) / 960)
     );
   height: calc(
-      40px + 25 * ((100vw - 320px) / 960)
+      18px + 62 * ((100vw - 320px) / 960)
     );
-  border-radius: 100px;
-  background-color: khaki;
-  color: black;
-}
-@media (max-width: 767px) {
-  #scrollToTopButton {
-    font-size: calc(
-      10px + 34 * ((100vw - 320px) / 1280)
-    );
-  }
-}
-@media (min-width: 767px) {
-  #scrollToTopButton {
-    font-size: calc(10px + 20 * (100vw / 1280));
-  }
+  color: khaki;
 }
 
 .active {
@@ -129,7 +124,7 @@ h6 {
     top: 0;
     flex-direction: column;
     background-color: rgba(40, 44, 52, 0.8);
-    width: 30%;
+    width: 20%;
     height: 100vh;
     border-radius: 10px;
     text-align: center;
@@ -454,16 +449,17 @@ h3 {
   min-height: 100vh;
 }
 
-.logo_svg {
+#my_logo {
   width: calc(
       150px + 50 * ((100vw - 320px) / 960)
     );
   height: calc(
       50px + 50 * ((100vw - 320px) / 960)
     );
+  fill: khaki;
 }
 
-.logo_svg_letter:hover {
+#my_logo:hover {
   fill: orangered;
   transition: all 400ms;
 }
