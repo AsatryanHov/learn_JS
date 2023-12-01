@@ -315,9 +315,6 @@ h3 {
   cursor: pointer;
 }
 
-.fz {
-  overflow: hidden !important;
-}
 @media (max-width: 767px) {
   .fz {
     font-size: calc(
@@ -329,6 +326,10 @@ h3 {
   .fz {
     font-size: calc(10px + 15 * (100vw / 1280));
   }
+}
+
+.fz::-webkit-scrollbar {
+  display: none;
 }
 
 .nav {
@@ -462,4 +463,48 @@ h3 {
 #my_logo:hover {
   fill: orangered;
   transition: all 400ms;
+}
+
+.jsfiddle_link {
+  color: black;
+  min-width: calc(
+      50px + 50 * ((100vw - 320px) / 960)
+    );
+  min-height: calc(
+      20px + 30 * ((100vw - 320px) / 960)
+    );
+  background-color: khaki;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: calc(
+      5px + 5 * ((100vw - 320px) / 960)
+    );
+  padding: calc(
+      3px + 7 * ((100vw - 320px) / 960)
+    );
+  transition: all 800ms;
+}
+@media (max-width: 767px) {
+  .jsfiddle_link {
+    font-size: calc(
+      10px + 17 * ((100vw - 320px) / 1280)
+    );
+  }
+}
+@media (min-width: 767px) {
+  .jsfiddle_link {
+    font-size: calc(10px + 10 * (100vw / 1280));
+  }
+}
+
+.fast_cheats_block {
+  margin: 0 auto;
+}
+
+.fast_cheat {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
