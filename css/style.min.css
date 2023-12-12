@@ -508,3 +508,32 @@ h3 {
   display: flex;
   justify-content: center;
 }
+
+.copyButton {
+  padding: calc(
+      3px + 7 * ((100vw - 320px) / 960)
+    );
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: black;
+  background-color: khaki;
+  border: none;
+  border-radius: 15px;
+}
+@media (max-width: 767px) {
+  .copyButton {
+    font-size: calc(
+      10px + 17 * ((100vw - 320px) / 1280)
+    );
+  }
+}
+@media (min-width: 767px) {
+  .copyButton {
+    font-size: calc(10px + 10 * (100vw / 1280));
+  }
+}
+
+.copyButton:active {
+  transform: translateY(8px);
+}
