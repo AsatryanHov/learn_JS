@@ -224,6 +224,9 @@ h3 {
       80px + 20 * ((100vw - 320px) / 960)
     );
   color: orangered;
+  margin-top: calc(
+      5px + 15 * ((100vw - 320px) / 960)
+    );
 }
 @media (max-width: 767px) {
   .header {
@@ -392,13 +395,14 @@ h3 {
 .links_alg {
   width: 100%;
   min-height: 100px;
-  margin-top: 100px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 .links_alg .alg_search {
-  width: 500px;
+  width: 100%;
   border: 1px solid khaki;
   border-radius: 50px;
   min-height: 100px;
@@ -407,7 +411,7 @@ h3 {
   flex-wrap: wrap;
 }
 .links_alg .alg_sort {
-  width: 500px;
+  width: 100%;
   border: 1px solid khaki;
   border-radius: 50px;
   min-height: 100px;
@@ -419,10 +423,9 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  display: block;
   color: inherit; /* Reset to default color */
-  min-width: 80px;
-  min-height: 50px;
+  min-width: 100px;
+  min-height: 20px;
   background-color: khaki;
   border-radius: 100px;
   margin: calc(
@@ -536,4 +539,72 @@ h3 {
 
 .copyButton:active {
   transform: translateY(8px);
+}
+
+.es7_btn_block {
+  width: 100%;
+  border: 1px solid khaki;
+  border-radius: 50px;
+  min-height: 100px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.es7_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: block;
+  color: inherit; /* Reset to default color */
+  min-width: 80px;
+  min-height: 50px;
+  background-color: khaki;
+  border-radius: 100px;
+  margin: calc(
+      5px + 5 * ((100vw - 320px) / 960)
+    );
+  padding: calc(
+      3px + 7 * ((100vw - 320px) / 960)
+    );
+}
+@media (max-width: 767px) {
+  .es7_btn {
+    font-size: calc(
+      10px + 17 * ((100vw - 320px) / 1280)
+    );
+  }
+}
+@media (min-width: 767px) {
+  .es7_btn {
+    font-size: calc(10px + 10 * (100vw / 1280));
+  }
+}
+
+.firs_page_text {
+  color: khaki;
+  font-weight: bolder;
+  text-align: center;
+  padding: calc(
+      20px + 20 * ((100vw - 320px) / 960)
+    );
+}
+@media (max-width: 767px) {
+  .firs_page_text {
+    font-size: calc(
+      20px + 34 * ((100vw - 320px) / 1280)
+    );
+  }
+}
+@media (min-width: 767px) {
+  .firs_page_text {
+    font-size: calc(20px + 20 * (100vw / 1280));
+  }
+}
+
+.line_alg {
+  border: 0;
+  height: 10px;
+  background-color: khaki; /* Color of the line */
+  margin: 20px 0; /* Adjust as needed */
 }

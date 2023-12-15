@@ -135,6 +135,9 @@
 			<div class="nav_blocks " data-tab_nav-content id="tab_nav-0">
 				<!-- <div class="sub_title">First page</div> -->
 				
+<p class="firs_page_text">This site can mainly be useful for beginner front-end developers as well as those just learning javascript and typescript.
+    Information is collected on the site from various sources, all the information that is presented is placed in the open resources of the Internet, which is available to any user.
+</p>
 			</div>
 
 			<div class="nav_blocks hidden" data-tab_nav-content id="tab_nav-1">
@@ -159,6 +162,7 @@
 			<button class="header_btn" data-tab="tab-15">Loops</button>
 			<button class="header_btn" data-tab="tab-16">import export</button>
 			<button class="header_btn" data-tab="tab-17">Debounce & Throttle</button>
+			<button class="header_btn" data-tab="tab-18">ES7-ES9</button>
 			
 		</div>
 
@@ -2558,7 +2562,6 @@ for (const key of Object.keys(person)) {
     function throttle(callBack, delay = 1000) {
     let isPaused = false;
 
-
     return (...arg) => {
         if (isPaused) return;
 
@@ -2571,11 +2574,9 @@ for (const key of Object.keys(person)) {
     }
     }
 
-
     function incrementCount(element) {
     element.textContent = (parseInt(element.innerText) || 0) + 1;
     }
-
 
     document.addEventListener('mousemove', (event) => {
     incrementCount(defaultText);
@@ -2586,6 +2587,620 @@ for (const key of Object.keys(person)) {
 </code></pre>
 	    </div>
 		
+		<div class="hidden" data-tab-content id="tab-18">
+			<div class="sub_title">ES7-ES9</div>
+			
+
+<div class="es7_btn_block">
+    <a href="#obj_met" class="es7_btn">Object methods</a>
+    <a href="#getOwnPropertyDescriptors" class="es7_btn">get Own Property Descriptors</a>
+    <a href="#Minor_enhancers" class="es7_btn">Minor enhancers</a>
+    <a href="#Minor_enhancers_2" class="es7_btn">Minor enhancers 2</a>
+    <a href="#Async_functions" class="es7_btn">Async functions</a>
+    <a href="#Async_errors_handling" class="es7_btn">Async errors handling</a>
+    <a href="#Async_iterators" class="es7_btn">Async iterators</a>
+    <a href="#Array_methods" class="es7_btn">Array methods</a>
+    <a href="#String_methods" class="es7_btn">String methods</a>
+    <a href="#RegExp" class="es7_btn">RegExp</a>
+</div>
+
+
+<h3 id="obj_met">Object methods</h3>
+<pre><code class=" fz language-javascript" >
+    // .entries() for Object:
+const user = {
+  firstName: "Yauhen",
+  lastName: "Kavalchuk",
+};
+
+Object.entries(user); // [ [ 'firstName', "Yauhen" ], [ 'lastName', "Kavalchuk" ] ];
+
+// .entries() for Array:
+const name = ['Y', 'a', 'u', 'h', 'e', 'n'];
+
+Object.entries(name); // [ [ '0', 'Y' ], [ '1', 'a' ], [ '2', 'u' ], [ '3', 'h' ], [ '4', 'e' ], [ '5', 'n' ] ];
+
+// .entries() ignore Symbol key:
+const admin = {
+  [Symbol('password')]: '123pass',
+  name: 'Yauhen',
+};
+
+Object.entries(admin); // [ [ 'name', 'Yauhen' ] ];
+
+// .fromEntries() using:
+const arr = [['one', 1], ['two', 2], ['three', 3]];
+
+Object.fromEntries(arr); // { one: 1, two: 2, three: 3 }
+
+// .values() using:
+const user = {
+  firstName: "Yauhen",
+  lastName: "Kavalchuk",
+};
+
+Object.values(user); // [ "Yauhen", "Kavalchuk" ] ];
+</code></pre>  
+    
+<h3 id="getOwnPropertyDescriptors">get Own Property Descriptors</h3>
+<pre><code class=" fz language-javascript" >
+    // Base object with properties, get and set:
+    const person = {
+      name: 'Max',
+      age: 30,
+      set personName(name) {
+        this.name = name;
+      },
+      get password() {
+        return `${this.name}${this.age}`;
+      },
+    };
+    
+    console.log(person); // {name: "Max", age: 30}
+    console.log(person.password); // "Max30"
+    
+    // Get property descriptors:
+    console.log(Object.getOwnPropertyDescriptors(person));
+    /*
+      age: {value: 30, writable: true, enumerable: true, configurable: true}
+      name: {value: "Max", writable: true, enumerable: true, configurable: true}
+      password: {get: ƒ, set: undefined, enumerable: true, configurable: true}
+      personName: {get: undefined, set: ƒ, enumerable: true, configurable: true}
+    */
+    
+    // Clone object:
+    // Using assign()
+    const admin = Object.assign({}, person);
+    // Using destructuring
+    const admin = { ...person };
+    
+    console.log(admin); // {name: "Max", age: 30, personName: undefined, password: "Max30"}
+    
+    console.log(Object.getOwnPropertyDescriptors(admin));
+    /*
+      age: {value: 30, writable: true, enumerable: true, configurable: true}
+      name: {value: "Max", writable: true, enumerable: true, configurable: true}
+      password: {value: "Max30", writable: true, enumerable: true, configurable: true}
+      personName: {value: undefined, writable: true, enumerable: true, configurable: true}
+    */
+    
+    // Clone object:
+    // Using .getOwnPropertyDescriptors()
+    const superAdmin = Object.defineProperties({}, Object.getOwnPropertyDescriptors(person));
+    
+    console.log(Object.getOwnPropertyDescriptors(superAdmin));
+    /*
+      age: {value: 30, writable: true, enumerable: true, configurable: true}
+      name: {value: "Max", writable: true, enumerable: true, configurable: true}
+      password: {get: ƒ, set: undefined, enumerable: true, configurable: true}
+      personName: {get: undefined, set: ƒ, enumerable: true, configurable: true}
+    */
+</code></pre> 
+
+
+<h3 id="Minor_enhancers">Minor enhancers</h3>
+<pre><code class=" fz language-javascript" >
+    // Math.pow():
+    Math.pow(7, 2) // 49
+    
+    // Exponentiation operator:
+    7**2 // 49
+    5**3 // 125
+    2**4 // 16
+    
+    // Complecated math operation
+    // Old:
+    Math.pow(7, 2) + Math.pow(5, 3) / Math.pow(2, 4);
+    // New version:
+    7**2 + 5**3 / 2**4;
+    // New version with braces:
+    (7**2) + (5**3) / (2**4);
+    
+    // Base Object:
+    const user = {
+      firstName: "Yauhen",
+      lastName: "Kavalchuk"
+    };
+    
+    // Base function constructor:
+    function Person(
+      name,
+      age
+    ) {
+      this.name = name;
+      this.age = age;
+    };
+    
+    // Added property for Object:
+    const user = {
+      firstName: "Yauhen",
+      lastName: "Kavalchuk",
+      age: 30
+    };
+    
+    // Added argument for function constructor:
+    function Person(
+      name,
+      age,
+      city
+    ) {
+      this.name = name;
+      this.age = age;
+      this.city = city;
+    };
+    
+    // The same changes, but with trailing commas:
+    const user = {
+      firstName: "Yauhen",
+      lastName: "Kavalchuk",
+      age: 30,
+    };
+    
+    function Person(
+      name,
+      age,
+      city,
+    ) {
+      this.name = name;
+      this.age = age;
+      this.city = city;
+    };
+</code></pre> 
+
+<h3 id="Async_functions">Async_functions</h3>
+<pre><code class=" fz language-javascript" >
+    // Base async function:
+    const fetchText = () => new Promise(resolve => { setTimeout(() => resolve('ES8'), 2000); });
+    
+    const showText = async () => {
+      const fetchedText = await fetchText();
+      console.log(`This is a feature of ${fetchedText}`);
+    };
+    
+    showText(); // This is a feature of ES8
+    
+    // Work sync with async functionality:
+    const fetchText = () => new Promise(resolve => { setTimeout(() => resolve('ES8'), 2000); });
+    
+    const showText = () => {
+      const fetchedText = fetchText();
+      console.log(`This is feature a of ${fetchedText}`);
+    };
+    
+    showText(); // This is a feature of [object Promise]
+    
+    // Async function always return Promise
+    // We can handle result:
+    const fetchText = () => new Promise(resolve => { setTimeout(() => resolve('ES8'), 2000); });
+    
+    const showText = async () => {
+      const fetchedText = await fetchText();
+      return `This is feature a of ${fetchedText}`;
+    };
+    
+    showText().then(data => console.log(data)); // This is a feature of ES8
+     
+    // if async function return simple value,
+    // this value still be in Promise
+    const fetchText = () => new Promise(resolve => { setTimeout(() => resolve('ES8'), 2000); });
+    
+    const showText = async () => {
+      const fetchedText = await fetchText();
+      return 10;
+    };
+    
+    console.log(showText()); // Promise
+    showText().then(data => console.log(data)); // 10
+    
+    
+    // Execute of 2 and more async functions:
+    const fetchDescrText = () => new Promise(resolve => { setTimeout(() => resolve('This is a feature of'), 2000); });
+    const fetchEsText = () => new Promise(resolve => { setTimeout(() => resolve('ES8'), 2000); });
+    
+    const showText = async () => {
+      const fetchedDescrText = await fetchDescrText();
+      const fetchedEsText = await fetchEsText();
+      return `${fetchedDescrText} ${fetchedEsText}`;
+    };
+    
+    // Receive result after ~4000ms
+    showText().then(data => console.log(data)); // This is a feature of ES8
+    
+    
+    // Parallel execute of async functions:
+    const showText = async () => {
+      const [fetchedDescrText, fetchedEsText] = await Promise.all([fetchDescrText(), fetchEsText()]);
+      return `${fetchedDescrText} ${fetchedEsText}`;
+    };
+    
+    // Receive result after ~2000ms
+    showText().then(data => console.log(data)); // This is a feature of ES8
+</code></pre> 
+
+<h3 id="Async_errors_handling">Async errors handling</h3>
+<pre><code class=" fz language-javascript" >
+    // Base async functional:
+    const fetchText = () => new Promise(resolve => { setTimeout(() => resolve('ES8'), 2000); });
+    
+    const showText = async () => {
+      const fetchedText = await fetchText();
+      console.log(`This is a feature of ${fetchedText}`); // This is a feature of ES8
+    };
+    
+    showText();
+    
+    
+    // Error handling with 'try/catch':
+    const fetchText = () => new Promise(resolve => { setTimeout(() => resolve('ES8'), 2000); });
+    
+    const showText = async () => {
+      try {
+        const fetchedText = await fetchText();
+        console.log(`This is a feature of ${fetchedText}`);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    
+    showText();
+    
+    
+    // Argument 'e' (error object) in 'catch' is not nessesary anymore
+    const fetchText = () => new Promise(resolve => { setTimeout(() => resolve('ES8'), 2000); });
+    
+    const showText = async () => {
+      try {
+        const fetchedText = await fetchText();
+        console.log(`This is a feature of ${fetchedText}`);
+      } catch {
+        console.log('Something going wrong...');
+      }
+    };
+    
+    showText();
+    
+    
+    // Error handling with 'catch' in 'await' function:
+    const fetchText = () => new Promise(resolve => { setTimeout(() => resolve('ES8'), 2000); });
+    
+    const showText = async () => {
+        const fetchedText = await fetchText().catch(e => console.log(e));
+        console.log(`This is a feature of ${fetchedText}`);
+    };
+    
+    showText();
+    
+    
+    // Error handling with 'catch' for full async function:
+    const fetchText = () => new Promise(resolve => { setTimeout(() => resolve('ES8'), 2000); });
+    
+    const showText = async () => {
+        const fetchedText = await fetchText();
+        console.log(`This is a feature of ${fetchedText}`);
+    };
+    
+    showText()
+      .then(console.log('Everything is OK!'))
+      .catch(e => console.log(e));
+    
+    
+    // Using 'finally' as a 3rd step of 'try/catch':
+    const fetchText = () => new Promise(resolve => { setTimeout(() => resolve('ES8'), 2000); });
+    
+    const showText = async () => {
+      try {
+        showSpiner = true;
+        const fetchedText = await fetchText();
+        console.log(`This is a feature of ${fetchedText}`);
+      } catch {
+        console.log('Something going wrong...');
+      } finally {
+        showSpiner = false;
+      }
+    }
+    
+    showText();
+</code></pre> 
+
+<h3 id="Async_iterators">Async iterators</h3>
+<pre><code class=" fz language-javascript" >
+    // Base Array (iterable instance):
+    const names = ['Jack', 'Max', 'Leo'];
+    // 'for-of' iteration:
+    for(let name of names) {
+      console.log(name); // 'Jack', 'Max', 'Leo'
+    }
+    
+    
+    // Base async Array:
+    const names = [
+      new Promise(resolve => resolve('Jack')),
+      new Promise(resolve => resolve('Max')),
+      new Promise(resolve => resolve('Leo')),
+    ];
+    
+    // Async function for iteration with 'for-of':
+    const showNames = async () => {
+      for (name of names) {
+        console.log(name);
+      }
+    };
+    showNames(); // Promise, Promise, Promise
+    
+    // Async function for iteration with 'for-await-of':
+    const showNames = async () => {
+      for await (name of names) {
+        console.log(name);
+      }
+    };
+    showNames(); // 'Jack', 'Max', 'Leo'
+    
+    
+    // Async generator function:
+    async function* readLines(path) {
+      let file = await fileOpen(path);
+    
+      try {
+        while (!file.EOF) {
+          yield await file.readLine();
+        }
+      } finally {
+        await file.close();
+      }
+    };
+    
+    
+    // Async iteration of async generator function results:
+    for await (const line of readLines(filePath)) {
+      console.log(line);
+    };
+</code></pre> 
+
+<h3 id="Array_methods">Array methods</h3>
+<pre><code class=" fz language-javascript" >
+// Base Array:
+const arr = [1,2,3,4, 'five', NaN];
+
+// Find element using .indexOf:
+if(arr.indexOf(3) >= 0) {
+  console.log(true); // true
+}
+// Find element using .includes:
+if(arr.includes(3)) {
+  console.log(true); // true
+}
+
+
+// Find NaN in Array:
+const index = arr.findIndex(Number.isNaN);
+console.log(index); // 5
+
+// Difference in finding NaN in Array:
+arr.indexOf(NaN); // -1
+arr.includes(NaN); // true
+
+
+// .flat() of 1st level:
+const arr1 = [1, 2, [3, 4]];
+arr1.flat(); // [1, 2, 3, 4]
+
+const arr2 = [1, 2, [3, 4, [5, 6]]];
+arr2.flat(); // [1, 2, 3, 4, [5, 6]]
+
+// .flat() of 2nd level:
+const arr3 = [1, 2, [3, 4, [5, 6]]];
+arr3.flat(2); // [1, 2, 3, 4, 5, 6]
+
+// .flat() of Infinity level:
+const arr4 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+arr4.flat(Infinity); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+// .flat() remove empty values:
+const arr5 = [1, 2, , 4, 5];
+arr5.flat(); // [1, 2, 4, 5]
+
+// .flat() remove empty values from 1st & 2nd levels of Array:
+const arr6 = [1, 2, , 4, 5, [6, , 8]];
+arr6.flat(); // [1, 2, 4, 5, 6, 8]
+
+
+// Using of .flatMap():
+const arr7 = [[1], [2], [3], [4]];
+arr7.flatMap(x => [x * 2]); // [2, 4, 6, 8]
+</code></pre> 
+
+<h3 id="String_methods">String methods</h3>
+<pre><code class=" fz language-javascript" >
+    // Base String:
+    const str = "test";
+    
+    // .padStart() with argument:
+    str.padStart(10, '~'); // '~~~~~~test'
+    str.padEnd(10, '~'); // 'test~~~~~~'
+    // .padStart() without of argument:
+    str.padStart(10); // '      test'
+    str.padEnd(10); // 'test      '
+    
+    
+    // Base String:
+    const str = "Hello, my name is Yauhen";
+    
+    // .startsWith() using:
+    str.startsWith("Hello"); // true
+    str.startsWith("Hi"); // false
+    // .endsWith() using:
+    str.endsWith("Yauhen"); // true
+    str.endsWith("Jack"); // false
+    
+    // Base String:
+    const str = "Hello, my name is Yauhen";
+    
+    // The resulting string after .startsWith() is "my name is Yauhen":
+    str.startsWith("my", 7); // true
+    
+    // The resulting string after .startsWith() is "my name is Yauhen":
+    str.startsWith("name", 7); // false
+    
+    // The resulting string after .endsWith() is "Hello, my name":
+    str.endsWith("name", 14); // true
+    
+    // The resulting string after .endsWith() is "Hello, my name":
+    str.endsWith("name", 10); // false
+    
+    
+    // Base String:
+    const str = "    Just test string     ";
+    
+    // base string after .trim():
+    str.trim(); // "Just test string"
+    
+    
+    // Base String:
+    const str = "    Just test string     ";
+    
+    // Base string after .trimStart():
+    str.trimStart(); // "Just test string     "
+    
+    // Base string after .trimEnd():
+    str.trimEnd(); // "    Just test string"
+</code></pre> 
+
+<h3 id="Minor_enhancers_2">Minor enhancers 2</h3>
+<pre><code class=" fz language-javascript" >
+    // Base function:
+    function /* just a comment */ test () {}
+    
+    // Difference between old and new versions of .toString():
+    // Old version:
+    test.toString(); // 'function test() {}'
+    // New version:
+    test.toString(); // 'function /* just a comment */ test () {}'
+    
+    // Base function:
+    function greeting() {
+      const name = 'webDev';
+      console.log(`hello from ${name}`);
+    };
+    // Difference between old and new versions of .toString():
+    // Old version:
+    test.toString(); //'function greeting() {\nconst name = \'webDev\'\nconsole.log(`hello from ${name} //`)\n}'
+    // New version:
+    test.toString();
+    /*  'function greeting() {\n' +
+        "  const name = 'webDev'\n" +
+        '  console.log(`hello from ${name}`)\n' +
+        '}'
+    */
+    
+    
+    // Symbol creation:
+    const mySymbol = Symbol('Symbol description');
+    // Define Symbol description
+    String(mySymbol) === 'Symbol(Symbol description)'; // true
+    
+    // Define Symbol description using property description:
+    mySymbol.description; // 'Symbol description'
+    mySymbol.description === 'Symbol description'; // true
+    
+    // If Symbol was created without description
+    // default value for property is 'undefined':
+    const myNewSymbol = Symbol();
+    myNewSymbol.description; // undefined
+    
+    
+    // Difference between old and new versions of .stringify():
+    // Old version:
+    JSON.stringify("\uD800"); // '"�"'
+    // New version:
+    JSON.stringify("\uD800"); // '"\\ud800"'
+</code></pre> 
+
+<h3 id="RegExp">Reg Exp</h3>
+<pre><code class=" fz language-javascript" >
+    // Difference between old and new versions of 'dot' behavior:
+    // Old version:
+    /one.two/.test('one\ntwo'); // false
+    // New version (dotAll)
+    // with flag /s:
+    /one.two/s.test('one\ntwo'); // true
+    
+    
+    // Base RegEx to work with date:
+    const regEx = /(\d{4})-(\d{2})-(\d{2})/;
+    
+    const result = regEx.exec('2019-08-23');
+    
+    console.log(result); // ["2019-08-23", "2019", "08", "23", index: 0, input: "2019-08-23", groups: undefined]
+    
+    // RegExp with named groups - (?<name>...):
+    const regEx = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/;
+    
+    const result = regEx.exec('2019-08-23');
+    
+    console.log(result); // ["2019-08-23", "2019", "08", "23", index: 0, input: "2019-08-23", groups: {...}];
+    
+    console.log(result.groups); // { year: "2019", month: "08", day: "23" }
+    
+    
+    // RegExp named groups and .replace():
+    const str = 'Kavalchuk Yauhen';
+    
+    const repl = /(?<firstName>[A-Za-z]+) (?<lastName>[A-Za-z]+$)/u;
+    
+    const newStr = str.replace(repl, '$<lastName>, $<firstName>');
+    
+    console.log(newStr); // "Yauhen, Kavalchuk"
+    
+    
+    // Using named groups inside RegExp - \k<group name>:
+    let sameWords = /(?<fruit>apple|orange) === \k<fruit>/u;
+    
+    sameWords.test('apple === apple');  //true
+    sameWords.test('orange === orange');  //true
+    sameWords.test('apple === orange');  //false
+    
+    
+    // Positive lookbehind (?<=[symbol]):
+    /(?<=#).*/.test('#frontend'); // true
+    /(?<=#).*/.test('frontend'); // false
+    
+    // Difference between old and new approaches:
+    // Old
+    '#frontend'.match(/#.*/)[0]; // '#frontend'
+    // New
+    '#frontend'.match(/(?<=#).*/)[0]; // 'frontend'
+    
+    
+    // Negative lookbehind (?>![symbol]):
+    'course coasts $20'.match(/(?<!\$)\d+\.?\d+/) // null
+    
+    'use hash-tag #20'.match(/(?<!\$)\d+\.?\d+/)[0] // 20
+    
+    'email@404.com'.match(/(?<!\$)\d+\.?\d+/)[0] // 404
+</code></pre> 
+
+	    </div>
 		
 
 			</div>
@@ -5264,20 +5879,1066 @@ for (const key of Object.keys(person)) {
 
 			<div class="nav_blocks hidden" data-tab_nav-content id="tab_nav-4">
 				<div class="sub_title">CSS</div>
-				<pre><code class=" fz language-scss">
+				<!-- 
+  <pre><code class=" fz language-scss">
+  
+</code></pre>
+<a class="jsfiddle_link" href="" target="_blank">Code on jsfiddle</a> 
+-->
+
+<!-- <pre><code class=" fz language-scss">
     .container {
         background-color: #f0f0f0;
         p {
           color: #333;
         }
-  </code></pre>
+  </code></pre> -->
 
- 
+  <div class="header_btns" id="header_css">
+    <button class="header_btn" data-tab="tabcss-1">Base Syntax & CSS Applying</button>
+    <button class="header_btn" data-tab="tabcss-2">Simple Selectors</button>
+    <button class="header_btn" data-tab="tabcss-3">Composite Selectors</button>
+    <button class="header_btn" data-tab="tabcss-4">Pseudo-elements & Pseudo-classes</button>
+    <button class="header_btn" data-tab="tabcss-5">Cascading & Inheritance</button>
+    <button class="header_btn" data-tab="tabcss-6">Box Model, Padding & Margin</button>
+    <button class="header_btn" data-tab="tabcss-7">Positioning & Sizing</button>
+    <button class="header_btn" data-tab="tabcss-8">Units, Overflow & z-index</button>
+    <button class="header_btn" data-tab="tabcss-9">Floating Elements & Clearfix</button>
+    <button class="header_btn" data-tab="tabcss-10">CSS Font & Text styles</button>
+    <button class="header_btn" data-tab="tabcss-11">Borders & Shadows</button>
+    <button class="header_btn" data-tab="tabcss-12">Border Radius, Lists & Colors</button>
+    <button class="header_btn" data-tab="tabcss-13">Display vs. Visibility, Vendor Prefixes</button>
+    <button class="header_btn" data-tab="tabcss-14">Background</button>
+    <button class="header_btn" data-tab="tabcss-15">Gradients</button>
+    <button class="header_btn" data-tab="tabcss-16">Filters</button>
+    <button class="header_btn" data-tab="tabcss-17">Transform</button>
+    <button class="header_btn" data-tab="tabcss-18">Transition</button>
+    <button class="header_btn" data-tab="tabcss-19">Animations</button>
+    <button class="header_btn" data-tab="tabcss-20">Tables & Cursor</button>
+    <button class="header_btn" data-tab="tabcss-21">Text Effects & Multi Columns Text</button>
+    <button class="header_btn" data-tab="tabcss-22">Media queries</button>
+    <button class="header_btn" data-tab="tabcss-23">Placeholder, Scrollbar & Sprites</button>
+    <button class="header_btn" data-tab="tabcss-24">Flex box</button>
+
+</div>
+
+<div class="contant_blocks" data-tab-content id="tabcss-1">
+    <div class="sub_title">Базовый синтаксис и применение стилей (Base Syntax & CSS Applying)</div>
+  <pre><code class=" fz language-scss">
+    h1,
+    h2,
+    h3,
+    h4 {
+      text-transform: uppercase;
+      font-style: italic;
+      font-size: 16px;
+      border: 1px solid #000;
+    }
+    
+    h2 {
+      color: green;
+    }
+</code></pre>
+
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/ktxc1fjr/12/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-2">
+    <div class="sub_title">Простые селекторы (Simple Selectors)</div>
+  <pre><code class=" fz language-scss">
+    * {
+        color: red;
+      }
+      
+      p {
+        color: green;
+      }
+      
+      .heading1 {
+        text-decoration: underline;
+      }
+      
+      .heading2 {
+        text-transform: uppercase;
+      }
+      
+      p.fz20 {
+        font-size: 20px;
+      }
+      
+      #heading,
+      #heading2 {
+        font-size: 40px;
+        border: 1px solid #000;
+      }
+      
+      q {
+        color: blue;
+      }
+      
+      q.simple {
+        color: aqua;
+      }
+      
+      body q.simple {
+        color: fuchsia;
+      }
+      
+</code></pre>
+
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/xdp40uvk/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-3">
+  <div class="sub_title">Составные селекторы (Composite Selectors)</div>
+<pre><code class=" fz language-scss">
+    h1,
+    h2,
+    span {
+      color: red;
+    }
+    
+    div p {
+      color: green;
+    }
+    
+    div p span {
+      color: blue;
+    }
+    
+    ul li > span {
+      font-weight: bold;
+    }
+    
+    ul li + li {
+      color: aqua;
+    }
+    
+    br ~ p {
+      font-size: 30px;
+    }
+    
+    a[target] {
+      background-color: yellow;
+    }
+    
+    a[target="_blank"] {
+      background-color: blue;
+    }
+    
+    a[href^="http://123"] {
+      background-color: aqua;
+    }
+    
+    a[href$=".jpg"] {
+      background-color: teal;
+    }
+    
+    a[href*="link"] {
+      background-color: rebeccapurple;
+    }
+    
+</code></pre>
+
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/dho8jqu7/2/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-4">
+  <div class="sub_title">Псевдоэлементы и псевдоклассы (Pseudo-elements & Pseudo-classes)</div>
+<pre><code class=" fz language-scss">
+    a {
+        color: black;
+        text-decoration: none;
+      }
+      
+      a:hover {
+        color: red;
+      }
+      
+      a:visited {
+        color: aqua;
+      }
+      
+      a:active {
+        color: green;
+      }
+      
+      a:focus {
+        font-weight: bold;
+      }
+      
+      p::first-letter {
+        font-size: 40px;
+      }
+      
+      p::first-line {
+        text-decoration: underline;
+      }
+      
+      p::selection {
+        background-color: yellow;
+        color: red;
+        font-size: 40px;
+      }
+      
+      h1::before {
+        content: "This is ";
+        text-transform: uppercase;
+      }
+      
+      h1::after {
+        content: " channel";
+        color: red;
+      }
+      
+      .list1 li:first-child {
+        color: blue;
+      }
+      
+      .list1 li:last-child {
+        color: green;
+      }
+      
+      .list2 li:nth-child(even) {
+        color: blue;
+      }
+      
+      .list2 li:nth-child(odd) {
+        color: green;
+      }
+      
+      .list3 li:nth-child(2) {
+        color: blue;
+      }
+      
+      .list3 li:nth-child(3) {
+        color: green;
+      }
+      
+      .list3 li:nth-child(3n + 1) {
+        text-transform: uppercase;
+      }
+      
+      .list3 li:nth-child(4n + 2) {
+        border: 1px solid black;
+      }
+      
+      .text span:first-of-type {
+        color: red;
+      }
+      
+      .text span:last-of-type {
+        color: green;
+      }
+      
+      .text span:nth-of-type(2) {
+        border: 1px solid black;
+      }
+      
+      .list4 li:not(.item) {
+        border: 1px solid blue;
+      }
+      
+      /* Selectors test
+      li							        ===> 1
+      #main .item					    ===> 110
+      h1 + *[href="test"] 		===> 11
+      #test p 					      ===> 101
+      li.item.main				    ===> 21
+      #test						        ===> 100
+      ul ol li.item				    ===> 13
+      ul li						        ===> 2
+      #test:not(.main)			  ===> 101
+      ul ol+li 					      ===> 3
+      a:hover						      ===> 11
+      p:first-line				    ===> 2
+      h2 strong					      ===> 2
+      span.test ul li				  ===> 13
+      */
+      
+</code></pre>
+
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/ru1Lwo8e/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-5">
+  <div class="sub_title">Каскадность и наследование (Cascading & Inheritance)</div>
+<pre><code class=" fz language-scss">
+    /*
+    p {
+      background-color: green;
+      color: white;
+      padding: 10px;
+    }
+    
+    .style1 {
+      background-color: aqua;
+      color: black;
+      border: none !important;
+    }
+    
+    #style2 {
+      background-color: pink;
+      border: 2px solid black;
+    }
+    
+    p {
+      background-color: gray;
+    }
+    */
+    
+    body {
+      color: red;
+      border: 1px solid black;
+      margin-bottom: 30px;
+    }
+    
+    p {
+      border: inherit;
+      margin: inherit;
+    }
+    
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/58wjkeox/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-6">
+  <div class="sub_title">Блочная модель и отступы (Box Model, Padding & Margin)</div>
+<pre><code class=" fz language-scss">
+    span,
+    div {
+      border: 10px solid red;
+      /* margin: 10px;
+      padding: 10px; */
+      margin: 10px 20px;
+      /* padding: 10px 20px 30px 40px; */
+      padding-top: 10px;
+      padding-right: 20px;
+      padding-bottom: 30px;
+      padding-left: 40px;
+    }
+    
+    /* inline, block, inline-block */
+    .test {
+      display: inline;
+    }
+    
+    /* Doesn't work for inline element */
+    span {
+      width: 100px;
+      height: 100px;
+    }
+    
+    .mar {
+      margin-top: 50px;
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      box-sizing: border-box;
+    }
+    
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/m1r5kz4v/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-7">
+  <div class="sub_title">Позиционирование и размеры (Positioning & Sizing)</div>
+<pre><code class=" fz language-scss">
+    body {
+        height: 1000px;
+      }
+      
+      h4 {
+        border: 1px solid black;
+      
+        position: absolute;
+        bottom: 150px;
+      }
+      
+      .test {
+        border: 10px solid red;
+        /* width: 100px; */
+        height: 100px;
+        display: inline-block;
+        box-sizing: border-box;
+      
+        position: sticky;
+        top: 20px;
+        right: 20px;
+        min-width: 100px;
+        max-width: 300px;
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/pm2eszyf/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-8">
+  <div class="sub_title">Единицы, переполнение и уровни элементов (Units, Overflow & z-index)</div>
+<pre><code class=" fz language-scss">
+    li {
+        font-size: 2rem;
+      }
+      
+      .main {
+        font-size: 2px;
+      }
+      
+      html {
+        font-size: 10px;
+      }
+      
+      .overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        width: 100px;
+        height: 100px;
+        box-sizing: border-box;
+        position: absolute;
+      
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        /* width: calc(100px + 200px + 1rem); */
+      
+        z-index: 1;
+      }
+      
+      .modal {
+        border: 2px solid black;
+        width: 300px;
+        height: 100px;
+        background-color: cornflowerblue;
+        font-size: 20px;
+        color: white;
+        position: absolute;
+      
+        z-index: 2;
+        overflow: hidden;
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-9">
+  <div class="sub_title">Плавающие элементы и очистка потока (Floating Elements & Clearfix)</div>
+<pre><code class=" fz language-scss">
+    .wrapper,
+    .wrapper2,
+    .item {
+      padding: 20px;
+      color: white;
+    }
+    
+    .wrapper {
+      background-color: grey;
+    }
+    
+    .wrapper:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+    
+    .wrapper2 {
+      background-color: green;
+    }
+    
+    .item {
+      float: left;
+      width: 150px;
+    }
+    
+    .item1 {
+      background-color: crimson;
+    }
+    
+    .item2 {
+      background-color: cyan;
+    }
+    
+    .item3 {
+      background-color: blueviolet;
+    }
+    
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/yevf0mup/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-10">
+  <div class="sub_title">Шрифты и текст (CSS Font & Text styles)</div>
+<pre><code class=" fz language-scss">
+    /* @font-face {
+        font-family: "Roboto";
+        src: url("/fonts/Roboto-Regular.ttf") format("truetype"),
+             url("/fonts/Roboto-Regular.woff") format("woff"),
+             url("/fonts/Roboto-Regular.woff2") format("woff2"),
+             url("/fonts/Roboto-Regular.otf") format("opentype");
+        font-weight: 500;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: "RobotoBoldItalic";
+        src: url("/fonts/Roboto-BoldItalic.ttf") format("truetype"),
+             url("/fonts/Roboto-BoldItalic.woff") format("woff"),
+             url("/fonts/Roboto-BoldItalic.woff2") format("woff2"),
+             url("/fonts/Roboto-BoldItalic.otf") format("opentype");
+        font-weight: 900;
+        font-style: italic;
+      } */
+      
+      @font-face {
+        font-family: "Roboto";
+        src: url("/fonts/Roboto-Regular.ttf") format("truetype");
+        font-weight: 500;
+        font-style: normal;
+      }
+      
+      body {
+        font-family: "Roboto", Arial, Helvetica, sans-serif;
+      }
+      
+      h1 {
+        color: blueviolet;
+        text-decoration: underline overline line-through none;
+        letter-spacing: 2px;
+        word-spacing: 10px;
+        line-height: 100px;
+        text-transform: uppercase;
+        text-align: center;
+      }
+      
+      p {
+        text-align: justify;
+        text-indent: 20px;
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/bn9khp6o/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-11">
+  <div class="sub_title">Границы и тени (Borders & Shadows)</div>
+<pre><code class=" fz language-scss">
+    .example {
+        width: 100px;
+        height: 100px;
+        background-color: grey;
+        margin: 20px;
+      
+        /* border-width: 10px;
+        border-style: solid;
+        border-color: red; */
+      
+        border: 10px solid red;
+      
+        border-right: none;
+        border-right-style: none;
+      
+        border-bottom-width: 20px;
+        border-left-color: blue;
+      
+        outline: 10px solid aqua;
+      }
+      
+      button:focus,
+      input:focus {
+        outline: 2px solid aqua;
+      }
+      
+      h1 {
+        text-shadow: 1px 2px 5px red, -1px -2px 5px green;
+      }
+      
+      .shadow {
+        width: 100px;
+        height: 100px;
+        background-color: grey;
+        margin: 20px;
+      
+        box-shadow: inset 1px 2px 5px blue, inset -1px -2px 5px aqua;
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/Lvro5k8g/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-12">
+  <div class="sub_title">Скругление углов, списки и цвета (Border Radius, Lists & Colors)</div>
+<pre><code class=" fz language-scss">
+    .example {
+        width: 100px;
+        height: 100px;
+        background-color: grey;
+        margin: 20px;
+      
+        /* border-radius: 50px 40px 30px 20px; */
+      
+        /* border-radius: 20px/40px; */
+      
+        border-top-left-radius: 50px;
+        border-top-right-radius: 40px;
+        border-bottom-right-radius: 30px;
+        border-bottom-left-radius: 20px;
+      }
+      
+      ul li {
+        list-style-type: disc;
+        list-style-position: inside;
+        /* list-style-image: url(https://image.flaticon.com/icons/png/128/66/66738.png); */
+      }
+      
+      h1 {
+        /* color: red; */
+        /* color: #ff0000; */
+        /* color: rgb(255, 0, 0); */
+        /* color: hsl(0, 100%, 50%); */
+        color: rgba(255, 0, 0, 0.5);
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/8fs67due/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-13">
+  <div class="sub_title">Отображение элементов и вендорные префиксы (Display vs. Visibility, Vendor Prefixes)</div>
+<pre><code class=" fz language-scss">
+    .first {
+        display: none;
+      }
+      
+      .second {
+        /* visibility: hidden; */
+        /* opacity: 0; */
+        color: transparent;
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/7vx9hs52/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-14">
+  <div class="sub_title"> Фон (Background)</div>
+<pre><code class=" fz language-scss">
+    body {
+        padding: 0;
+        margin: 0;
+      }
+      
+      .wrapper {
+        min-height: 100vh;
+        width: 100%;
+      
+        /* background-color: gainsboro;
+        background-image: url(https://images.pexels.com/photos/691571/pexels-photo-691571.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+        background-size: cover;
+        background-size: auto 300px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-attachment: fixed; */
+      
+        background: url(https://seeklogo.com/images/C/css3-logo-8724075274-seeklogo.com.png)
+            center no-repeat,
+          url(https://images.pexels.com/photos/691571/pexels-photo-691571.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/puna4k2h/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-15">
+  <div class="sub_title">Градиенты (Gradients)</div>
+<pre><code class=" fz language-scss">
+    body {
+        padding: 0;
+        margin: 0;
+      
+        background-color: blue;
+      }
+      
+      .wrapper {
+        min-height: 100vh;
+        width: 100%;
+      
+        /* background-image: linear-gradient(45deg, red 10%, orange 50%, yellow 70%, green, aqua, blue); */
+        /* background-image: repeating-linear-gradient(45deg, yellow 25px, black 25px, black 50px, yellow 50px, yellow 75px, black 75px); */
+      
+        background-image: repeating-radial-gradient(circle, aqua 20px, red 80px);
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/3zpg6fre/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-16">
+  <div class="sub_title">Фильтры (Filters)</div>
+<pre><code class=" fz language-scss">
+    body {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      img {
+        transition: all 1s ease;
+      }
+      
+      img:hover {
+        /* filter: blur(2px); */
+        /* filter: drop-shadow(5px 6px 4px rgba(0, 0, 0, 0.5)); */
+        /* filter: grayscale(80%); */
+        /* filter: brightness(150%); */
+        /* filter: contrast(150%); */
+        /* filter: hue-rotate(180deg); */
+        /* filter: hue-rotate(180deg); */
+        /* filter: invert(100%); */
+        /* filter: saturate(165%); */
+        /* filter: sepia(100%); */
+        /* filter: opacity(50%); */
+        /* filter: url(#toSvg); */
+        filter: blur(2px) brightness(150%);
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/q7xmzfch/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-17">
+  <div class="sub_title">Трансформации (Transform)</div>
+<pre><code class=" fz language-scss">
+    body {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .wrapper {
+        border: 2px solid black;
+        height: 169px;
+      
+        /* overflow: hidden; */
+      }
+      
+      img {
+        transition: all 1s ease;
+        transform-origin: 50px 100px;
+      }
+      
+      img:hover {
+        /* transform: rotate(360deg); */
+        /* transform: scale(0.2, 1.2); */
+        /* transform: scaleX(0.2); */
+        /* transform: scaleY(1.2); */
+        /* transform: scale(1.2); */
+        /* transform: translate(-50px, -80px); */
+        /* transform: translateX(50px); */
+        /* transform: translateY(80px); */
+        /* transform: skew(0, 45deg); */
+        /* transform: skewX(45deg); */
+        /* transform: skewY(45deg); */
+        /* transform: rotate(10deg) scale(1.2) skew(10deg); */
+        transform: rotate(90deg);
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/mjprkxfn/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-18">
+  <div class="sub_title">Плавные переходы (Transition)</div>
+<pre><code class=" fz language-scss">
+    body {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .example {
+        border: 2px solid black;
+        width: 200px;
+        height: 200px;
+        background-color: aqua;
+      
+        /* transition-duration: 500ms, 2s;
+        transition-property: transform, background-color;
+        transition-delay: 0, 10s;
+        transition-timing-function: linear; */
+      
+        transition: all 1s ease .5s;
+      }
+      
+      .example:hover {
+        background-color: red;
+        transform: scale(1.2);
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/qdzmh2er/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-19">
+  <div class="sub_title">Анимации (Animations)</div>
+<pre><code class=" fz language-scss">
+    body {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .example {
+        border: 2px solid black;
+        width: 200px;
+        height: 200px;
+        background-color: aqua;
+      
+        /* animation-name: myAnimation;
+        animation-duration: 5s;
+        animation-timing-function: linear;
+        /* animation-iteration-count: infinite;
+        animation-direction: reverse;
+        animation-fill-mode: forwards;
+        animation-delay: 3s; */
+      
+        animation: bgChange 5s linear infinite, sizeChange 5s linear infinite;
+      }
+      
+      .example:hover {
+        animation-play-state: paused;
+      }
+      
+      @keyframes bgChange {
+        from { background-color: aqua; }
+        50% { background-color: red; }
+        to { background-color: green; }
+      }
+      
+      @keyframes sizeChange {
+        from { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        to { transform: scale(1); }
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/6adefL1m/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-20">
+  <div class="sub_title">Таблицы и курсор (Tables & Cursor)</div>
+<pre><code class=" fz language-scss">
+    body {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      table,
+      table * {
+        max-width: 600px;
+        border: 1px solid black;
+        border-collapse: separate;
+        /* border-spacing: 10px; */
+        caption-side: top;
+      
+        min-width: 100px;
+        text-align: right;
+        vertical-align: baseline;
+        empty-cells: hide;
+        cursor: pointer;
+      }
+      
+      .dis,
+      td {
+        pointer-events: none;
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/7ftzgv0k/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-21">
+  <div class="sub_title">Текстовые эффекты и многоколоночный текст (Text Effects & Multi Columns Text)</div>
+<pre><code class=" fz language-scss">
+    body {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .example {
+        font-size: 30px;
+        border: 1px solid black;
+        width: 150px;
+        min-height: 150px;
+      
+        /* overflow: hidden; */
+        /* text-overflow: ellipsis; */
+        /* white-space: nowrap; */
+        word-wrap: break-word;
+        word-break: break-all;
+        writing-mode: vertical-rl;
+      }
+      
+      .container {
+        column-count: 3;
+        column-rule: 1px solid black;
+        column-width: 300px;
+        column-gap: 100px;
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/0bkyvz7q/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-22">
+  <div class="sub_title">Медиазапросы (Media queries)</div>
+<pre><code class=" fz language-scss">
+    body {
+        padding: 10px 30px;
+        margin: 0;
+        height: 100vh;
+        background-color: lightgrey;
+        font-size: 24px;
+        font-family: monospace;
+      }
+      
+      @media screen and (min-width: 992px) and (max-width: 1200px) {
+        body {
+          background-color: aqua;
+        }
+      }
+      
+      @media screen and (orientation: portrait) {
+        h1 {
+          display: none;
+        }
+      }
+      
+      @media print {
+        body {
+          color: blue;
+        }
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/3tw9qcp1/1/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-23">
+  <div class="sub_title">Стилизация плейсхолдера и скролла, CSS-спрайты (Placeholder, Scrollbar & Sprites)</div>
+<pre><code class=" fz language-scss">
+    body {
+        padding: 10px 30px;
+        margin: 0;
+        background-color: lightgrey;
+        font-size: 24px;
+        font-family: monospace;
+      }
+      
+      input {
+        font-size: 24px;
+        padding: 5px 10px;
+      
+        color: red;
+      }
+      
+      ::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: blue;
+        opacity: 1; /* Firefox */
+      }
+      
+      ::-ms-input-placeholder {
+        /* Edge */
+        color: blue;
+      }
+      
+      :-ms-input-placeholder {
+        /* IE 10-11 */
+        color: blue;
+      }
+      
+      ::-webkit-scrollbar {
+        width: 25px;
+        background: #101124;
+      }
+      
+      ::-webkit-scrollbar-track {
+        border: 5px solid rgba(255, 255, 255, 0.25);
+        box-shadow: inset 0 0 2.5px 2px rgba(0, 0, 0, 0.5);
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(45deg, #00ffa1, #00ffff);
+        border-radius: 15px;
+      }
+      
+      button {
+        width: 200px;
+        height: 79px;
+        background-image: url(./23.png);
+        background-position: top;
+        background-size: cover;
+        text-indent: -9999px;
+        border: none;
+        background-color: transparent;
+        outline: grey;
+      }
+      
+      button:hover {
+        background-position: center;
+      }
+      
+      button:active {
+        background-position: bottom;
+      }
+      
+</code></pre>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/234d8gaw/2/" target="_blank">Code on jsfiddle</a>
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabcss-24">
+  <div class="sub_title">Links flex box</div>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/0dkfuc7x/1/" target="_blank">Основные понятия (Base Definitions)</a> 
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/q15zjLox/1/" target="_blank">Направление осей (Flex-direction)</a> 
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/9b2opLag/1/" target="_blank">Обёртка элементов и отступы (Flex-wrap & Gap)</a> 
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/g79e8vn4/1/" target="_blank">Выравнивание вдоль главной оси (Alignment: justify-content)</a> 
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/kab814f9/" target="_blank">Выравнивание вдоль поперечной оси (Alignment: align-items)</a>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/kf4p657j/1/" target="_blank"> Многострочное выравнивание (Alignment: align-content)</a>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/p681dovq/" target="_blank">Индивидуальное выравнивание элементов (Alignment: align-self)</a>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/6ejt7p4c/1/" target="_blank">Размеры элементов (Flexbox Sizing)</a>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/Lxyh4zjq/" target="_blank">Определение порядка элементов (Order)</a>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/mp0jLdn8/" target="_blank">Вложенность. Обёртка элементов с размерами (Nesting. Flex-basis & Flex-wrap)</a>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/f0wjqv9z/2/" target="_blank">Практические примеры использования Flexbox (Practical examples) 1</a>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/v2khb3uj/3/" target="_blank">Практические примеры использования Flexbox (Practical examples) 2</a>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/hgv5ozy6/" target="_blank">Практические примеры использования Flexbox (Practical examples) 3</a>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/zvcdyr9e/1/" target="_blank">Практические примеры использования Flexbox (Practical examples) 4</a>
+</div> 
 			</div>
 
 			<div class="nav_blocks hidden" data-tab_nav-content id="tab_nav-5">
 				<div class="sub_title">Algorithms</div>
-				<div class="links_alg">
+				<!-- <div class="links_alg">
     <div class="alg_search">
         <a href="#binary" class="alg_btn">Binary search</a>
         <a href="#fast" class="alg_btn">Fast Linear search</a>
@@ -5292,8 +6953,22 @@ for (const key of Object.keys(person)) {
         <a href="#radix" class="alg_btn">Radix sort</a>
     </div>
 
+</div> -->
 
-    
+<div class="links_alg">
+  
+      <a href="#binary" class="alg_btn">Binary search</a>
+      <a href="#fast" class="alg_btn">Fast Linear search</a>
+      <a href="#interpolation" class="alg_btn">Interpolation search</a>
+      <a href="#linear" class="alg_btn">Linear search</a>
+  
+  <hr class="line_alg">
+      <a href="#bubble" class="alg_btn">Bubble sort</a>
+      <a href="#counting" class="alg_btn">Counting sort</a>
+      <a href="#marge" class="alg_btn">Marge sort</a>
+      <a href="#quick" class="alg_btn">Quick sort</a>
+      <a href="#radix" class="alg_btn">Radix sort</a>
+  
 
 </div>
 
@@ -5647,8 +7322,48 @@ for (const key of Object.keys(person)) {
 			</div>
 
 			<div class="nav_blocks hidden" data-tab_nav-content id="tab_nav-6">
-				<div class="sub_title">TypeScript</div>
-				
+				<div class="sub_title">GIT commands</div>
+				<pre>
+    <code class=" fz language-txt">
+    git init --------------------------------Create a new local repo
+    git diff --------------------------------Show changes not yet staged 
+    git status ------------------------------List new or unmodified files
+    git add -------------------------------- Stage all changed files
+    git add &lt;file&gt; --------------------------Stage a file
+    git commit -a ---------------------------Commit all local changes in tracked files
+    git commit ------------------------------Commit previously staged changes
+    git commit --amend ----------------------Change the last commit
+    git log -------------------------------- Show full change history
+    git checkout &lt;branch&gt; -------------Switch to a branch and update working directory
+    git branch &lt;new-branch&gt; -----------Create a new branch
+    git branch -d &lt;branch&gt; ------------Delete a branch
+    git fetch &lt;remote&gt; ----------------Fetch all branches from remote repo
+    git pull &lt;remote&gt; &lt;branch&gt; --------Fetch remote version of a branch and update local branch
+    git push &lt;remote&gt; &lt;branch&gt; --------Push the committed changes to a remote repository
+    git merge &lt;branch&gt; ----------------Merge the specified branch into the current branch
+    git rebase &lt;branch&gt;  --------------Rebase your current HEAD onto  the specified branch
+    git revert &lt;commit&gt; ---------------Creates a new commit to revert the specified commit
+    </code>
+  </pre>
+
+  <!-- git init --------------------Create a new local repo
+git diff --------------------Show changes not yet staged 
+git status ------------------List new or unmodified files
+git add -------------------- Stage all changed files
+git add <file> --------------Stage a file
+git commit -a ---------------Commit all local changes in tracked files
+git commit ------------------Commit previously staged changes
+git commit --amend ----------Change the last commit
+git log -------------------- Show full change history
+git checkout <branch> -------Switch to a branch and update working directory
+git branch <new-branch> -----Create a new branch
+git branch -d <branch> ------Delete a branch
+git fetch <remote> ----------Fetch all branches from remote repo
+git pull <remote> <branch> --Fetch remote version of a branch and update local branch
+git push <remote> <branch> --Push the committed changes to a remote repository
+git merge <branch> ----------Merge the specified branch into the current branch
+git rebase <branch>  --------Rebase your current HEAD onto  the specified branch
+git revert <commit> ---------Creates a new commit to revert the specified commit  -->
 			</div>
 
 			<div class="nav_blocks hidden" data-tab_nav-content id="tab_nav-7">
@@ -5685,6 +7400,7 @@ for (const key of Object.keys(person)) {
     <button class="header_btn" data-tab="tabCode-0">List</button>
     <button class="header_btn" data-tab="tabCode-42">42</button>
     <button class="header_btn" data-tab="tabCode-43">43</button>
+    <button class="header_btn" data-tab="tabCode-45">45</button>
   
  
   
@@ -5692,9 +7408,22 @@ for (const key of Object.keys(person)) {
 
 <div class="contant_blocks" data-tab-content id="tabCode-0">
     <div class="sub_title">Lessons</div>
-  <pre>
-    <code>
-        Полный курс по JavaScript + React - с нуля до результата
+  
+<!-- 
+
+<pre><code class="fz language-javascript">
+   
+      
+</code></pre> 
+
+<a class="jsfiddle_link" href="" target="_blank">Lesson code on jsfiddle</a> 
+
+-->
+
+
+<pre>
+    <code class="fz language-javascript">
+        Полный курс по JavaScript + React 
 
         1. Как проходить данный курс
         2. Почему этот курс?
@@ -5932,108 +7661,93 @@ for (const key of Object.keys(person)) {
 
 <pre><code class="fz language-javascript">
     const box = document.getElementById('box');
-
     console.log(box);
-    
     const btns = document.getElementsByTagName('button');
-    
     console.log(btns[0]);
-    
     const circles = document.getElementsByClassName('circle');
     console.log(circles);
-    
     const hearts = document.querySelectorAll('.heart');
-    
     hearts.forEach(item => {
       console.log(item);
-    
     });
-    
     const oneHeart = document.querySelector('.heart');
-    
     console.log(oneHeart);
       
 </code></pre> 
 
-<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/vnh8gxq2/4/">Lesson code on jsfiddle</a>
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/vnh8gxq2/4/" target="_blank">Lesson code on jsfiddle</a>
 </div> 
 
 <div class="contant_blocks hidden" data-tab-content id="tabCode-43">
     <div class="sub_title">43</div>
   <pre><code class="fz language-javascript">
 const box = document.getElementById('box'),
-
     btns = document.getElementsByTagName('button'),
-
     circles = document.getElementsByClassName('circle'),
-
     hearts = document.querySelectorAll('.heart'),
-
     oneHeart = document.querySelector('.heart'),
-
     wrapper = document.querySelector('.wrapper');
-
 box.style.backgroundColor = 'blue';
-
 box.style.width = '500px';
-
 box.style.cssText = 'background-color: blue; width: 500px; '
-
 btns[1].style.borderRadius = '100%';
-
 circles[0].style.backgroundColor = 'red';
-
 for (let i = 0; i < hearts.length; i++) {
-
     hearts[i].style.backgroundColor = 'blue';
-
 }
-
 hearts.forEach(item => {
-
     item.style.backgroundColor = 'blue';
 });
-
 const div = document.createElement('div');
-
 const text = document.createTextNode('Тут был я');
-
 div.classList.add('black');
-
 wrapper.append(div);
-
 wrapper.appendChild(div);
-
 wrapper.prepend(div);
-
 hearts[0].before(div);
-
-hearts[0].after(div);
-
-
-
-wrapper.insertBefore(div, hearts[1]);
-
 hearts[0].after(div);
 
 wrapper.insertBefore(div, hearts[1]);
-
+hearts[0].after(div);
+wrapper.insertBefore(div, hearts[1]);
 circles[0].remove();
-
 wrapper.removeChild(hearts[1]);
-
 hearts[0].replaceWith(circles[0]);
-
 wrapper.replaceChild(circles[0], hearts[0]);
-
 div.innerHTML = "<h1>Hello World</h1>";
-
 div.textContent = "<h1>Hello World</h1>";
-
-div.insertAdjacentHTML("afterend", '<h2>Hello</h2>');
-
-      
+div.insertAdjacentHTML("afterend", '<h2>Hello</h2>');    
 </code></pre> 
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabCode-45">
+  <div class="sub_title">45</div>
+<pre><code class="fz language-javascript">
+    const btn = document.querySelectorAll('button'),
+    overlay = document.querySelector('.overlay');
+ // btn.onclick = function() { // alert('Click');
+ // };
+ // btn.onclick = function() { alert('Second click'); // };
+ // let i = 0;
+ const deleteElement = (e) => {
+   console.log(e.target);
+   console.log(e.type);
+   // i++;
+   // if (i == 1) {
+   // btn.removeEventListener('click', deleteElement);
+   // }
+ };
+
+ btn.addEventListener('click', deleteElement);
+  overlay.addEventListener('click', deleteElement);
+  const link = document.querySelector('a');
+ link.addEventListener('click', function(event) {
+       event.preventDefault();
+       console.log(event.target);
+ });   
+</code></pre> 
+
+<a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/2sgp34xq/11/" target="_blank">Lesson code on jsfiddle</a> 
 </div> 
 			</div>
 
@@ -6065,6 +7779,9 @@ div.insertAdjacentHTML("afterend", '<h2>Hello</h2>');
 		<svg class="svg_toTopbtn" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M54.63 246.6L192 109.3l137.4 137.4C335.6 252.9 343.8 256 352 256s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25l-160-160c-12.5-12.5-32.75-12.5-45.25 0l-160 160c-12.5 12.5-12.5 32.75 0 45.25S42.13 259.1 54.63 246.6zM214.6 233.4c-12.5-12.5-32.75-12.5-45.25 0l-160 160c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0L192 301.3l137.4 137.4C335.6 444.9 343.8 448 352 448s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25L214.6 233.4z"/></svg>
 	</button>
 </main>
+<footer class="footer">
+	
+</footer>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 	<script src="js/app.min.js"></script>
 
