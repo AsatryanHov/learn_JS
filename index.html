@@ -7397,13 +7397,14 @@ git revert <commit> ---------Creates a new commit to revert the specified commit
 
 
 <div class="header_btns" id="header">
-    <button class="header_btn" data-tab="tabCode-0">List</button>
-    <button class="header_btn" data-tab="tabCode-42">42</button>
-    <button class="header_btn" data-tab="tabCode-43">43</button>
-    <button class="header_btn" data-tab="tabCode-45">45</button>
-  
- 
-  
+	<button class="header_btn" data-tab="tabCode-0">List</button>
+	<button class="header_btn" data-tab="tabCode-42">42</button>
+	<button class="header_btn" data-tab="tabCode-43">43</button>
+	<button class="header_btn" data-tab="tabCode-45">45</button>
+	<button class="header_btn" data-tab="tabCode-46">46</button>
+	<button class="header_btn" data-tab="tabCode-49">49</button>
+	<button class="header_btn" data-tab="tabCode-50">50</button>
+
 </div>
 
 <div class="contant_blocks" data-tab-content id="tabCode-0">
@@ -7416,7 +7417,7 @@ git revert <commit> ---------Creates a new commit to revert the specified commit
       
 </code></pre> 
 
-<a class="jsfiddle_link" href="" target="_blank">Lesson code on jsfiddle</a> 
+<a class="jsfiddle_link" href="" target="_blank">Lesson code </a> 
 
 -->
 
@@ -7722,7 +7723,7 @@ div.insertAdjacentHTML("afterend", '<h2>Hello</h2>');
 
 <div class="contant_blocks hidden" data-tab-content id="tabCode-45">
   <div class="sub_title">45</div>
-<pre><code class="fz language-javascript">
+  <pre><code class="fz language-javascript">
     const btn = document.querySelectorAll('button'),
     overlay = document.querySelector('.overlay');
  // btn.onclick = function() { // alert('Click');
@@ -7749,6 +7750,95 @@ div.insertAdjacentHTML("afterend", '<h2>Hello</h2>');
 
 <a class="jsfiddle_link" href="https://jsfiddle.net/hov55555/2sgp34xq/11/" target="_blank">Lesson code on jsfiddle</a> 
 </div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabCode-46">
+  <div class="sub_title">46</div>
+  <pre><code class="fz language-javascript">
+    document.head;
+    document.documentElement;
+    document.body.childNodes;
+    document.body.firstChild;
+    document.body.firstElementChild;
+    document.body.lastChild;
+    document.querySelector('#current').parentNode;
+    document.querySelector('#current').parentElement;
+    document.querySelector('[data-current="3"]').nextElementSibling;
+    
+    for (let node of document.body.childNodes) {
+      if (node.nodeName == '#text') {
+        continue;
+      }
+      console.log(node);
+    }  
+</code></pre> 
+
+<a class="jsfiddle_link" href="https://stackblitz.com/edit/ud-46?file=index.html" target="_blank">Lesson code </a> 
+</div> 
+
+<div class="contant_blocks hidden" data-tab-content id="tabCode-49">
+  <div class="sub_title">49</div>
+  <pre><code class="fz language-javascript">
+    // touchstart
+    // touchmove
+    // touchend
+    // touchenter
+    // touchleave
+    // touchcancel
+    
+    window.addEventListener('DOMContentLoaded', () => {
+      const box = document.querySelector('.box');
+    
+      box.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        console.log('Start');
+      });
+    
+      box.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        console.log('Move');
+      });
+    
+      box.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        console.log('End');
+      });
+    });
+    
+    // touches
+    // targetTouches
+    // changedTouches
+    
+      
+</code></pre> 
+
+<a class="jsfiddle_link" href="https://stackblitz.com/edit/web-platform-2eda5e?file=script.js,index.html" target="_blank">Lesson code </a> 
+</div>
+
+<div class="contant_blocks hidden" data-tab-content id="tabCode-50">
+  <div class="sub_title">50</div>
+  <pre><code class="fz language-javascript">
+    function loadScript(src) {
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = false;
+        document.body.append(script);
+    }
+      
+      loadScript('js/test.js');
+      loadScript('js/some.js');
+
+    ------------------------------------
+    &lt;script async src=&quot;async-script.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script defer src=&quot;deferred-script1.js&quot;&gt;&lt;/script&gt;
+    &lt;script defer src=&quot;deferred-script2.js&quot;&gt;&lt;/script&gt;
+          
+      
+</code></pre> 
+
+<a class="jsfiddle_link" href="https://stackblitz.com/edit/web-platform-e53ivm?file=index.html,styles.css,script.js" target="_blank">Lesson code </a> 
+
+</div>
 			</div>
 
 			<div class="nav_blocks hidden" data-tab_nav-content id="tab_nav-9">
@@ -7756,13 +7846,20 @@ div.insertAdjacentHTML("afterend", '<h2>Hello</h2>');
 				
 
 <div class="fast_cheats_block">
-    <img class="fast_cheat" src="img\css_1.jpg" alt="">
+    <div class="sub_title">CSS</div>
+    <img class="fast_cheat" src="img\css_1.webp" alt="">
     <hr>
-    <img class="fast_cheat" src="img\css_2.jpg" alt="">
+    <img class="fast_cheat" src="img\css_2.webp" alt="">
     <hr>
-    <img class="fast_cheat" src="img\js_1.jpg" alt="">
+    <div class="sub_title">JavaScript</div>
+    <img class="fast_cheat" src="img\js_1.webp" alt="">
     <hr>
-    <img class="fast_cheat" src="img\js_2.jpg" alt="">
+    <img class="fast_cheat" src="img\js_2.webp" alt="">
+    <hr>
+    <img class="fast_cheat" src="img\js_3.webp" alt="">
+    <hr>
+    <img class="fast_cheat" src="img\js_4.webp" alt="">
+    
     
 </div>
 			</div>
